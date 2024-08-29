@@ -1,13 +1,732 @@
-body {
+* {
+  font-family: 'Arial', sans-serif;
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.z3 {
+  z-index: 3;
+}
+
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;position: relative;
+}
+
+body {
+  background-color: #7a7a7a44;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.purple {
+  color: #5e1e9b;
+}
+
+.df {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button {
+  cursor: pointer;
+}
+
+.button:hover {
+  transform: scale(1.2);
+}
+
+.title{
+  text-align: center;
+  margin-top: 32px;
+}
+
+/*
+  Nav
+*/
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 32px 52px 0 52px;
+}
+
+.nav__title {
+  color: black;
+  text-decoration: none;
+  font-size: 32px;
+}
+
+.white {
+  color: white;
+}
+
+.nav__links {
+  font-size: 15px;
+}
+
+.nav__link {
+  margin-left: 18px;
+  color: black;
+  text-decoration: none;
+}
+
+.nav__button {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.menu__backdrop {
+  position: absolute;
+  background-color: #7a7a7a;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  visibility: hidden;
+  transition: all 300ms ease;
+  opacity: 0;
+  transform: translate(100%);
+}
+
+.menu__nav-bar{
+  display: flex;
+  justify-content: space-between;
+  padding: 32px;
+}
+
+.menu__list{
+  display: flex;
+  flex-direction: column;
+  margin-left: 64px;
+  margin-top: 128px;
+}
+
+.menu__list:hover > .menu__link{
+  opacity: 0.4;
+}
+
+.menu__list:hover > .menu__link:hover{
+  opacity: 1;
+}
+
+.menu__link{
+  color:white;
+  font-size: 68px;
+  z-index: 3;
+  text-decoration: none;
+}
+
+.menu__nav--button{
+  margin: 16px 64px;
+  font-size: 50px;
+  padding: 8px;
+  border: 1px solid #ffffff;
+  border-radius: 80px;
+}
+.menu--open {
+  max-height: 100vh;
+  overflow: hidden;
+}
+
+.menu--open .menu__backdrop {
+  visibility: visible;
+  opacity: 1;
+  transform: translate(0);
+}
+
+.menu__background{
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  background-image: radial-gradient(rgba(95, 31,156,0.5) 9%,transparent 9%);
+  background-position: 0% 0%;
+  position: absolute;
+  background-size: 12vmin 12vmin;  
+  z-index: 2;
+  transition: opacity 500ms ease,
+  background-size 500ms ease;
+}
+
+.menu__list:hover ~ .menu__background{ 
+  background-size: 11vmin 11vmin;  
+  opacity: 0.45;
+}
+
+/*
+  Landing
+*/
+
+.landing {
+  height: 90vh;
+  margin-left: 400px;
+  padding-top: 300px;
+  margin-right: 24px;
+}
+
+.landing__title {
+  font-size: 60px;
+}
+
+.landing__subtitle {
+  font-size: 25px;
+}
+
+.landing__link {
+  color: #5f1f9c;
+  font-size: 30px;
+  margin: 16px;
+  margin-left: 0;
+}
+
+/*
+  About
+*/
+
+.wave {
+  width: 100%;
+  max-height: 100px;
+}
+
+.about {
+  color: white;
+  line-height: 0%;
+}
+
+.about__container {
+  background-color: #5e1e9b;
+  padding: 0 52px 52px 52px;
+}
+
+.about__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 1600px;
+}
+
+.about__desc {
+  font-size: 24px;
+}
+
+.about__img {
+  max-width: 500px;
+  border-radius: 16px;
+}
+
+.about__text {
+  padding: 16px 0 16px 32px ;
+  line-height: 32px;
+  display: flex;
+  flex-direction: column;
+}
+
+.contact__button {
+  color: white;
+  border: 1px solid white;
+  text-decoration: none;
+  border-radius: 16px;
+  margin-top: 16px;
+  padding: 8px 16px;
+  width: 20%;
+  text-align: center;
+  width: 30%;
+}
+
+.contact__button:active {
+  background-color: white;
+  color: #5e1e9b;
+}
+
+/*
+  Projects
+*/
+.project__section {
+  width: 100%;
+}
+
+.project__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;  
+  align-items: center;
+}
+
+.projects {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 32px 0;
+}
+
+.project {
+  width: 30%;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+}
+
+.project__button {
+  background-color: #5e1e9b;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 16px;
+  padding: 16px 32px;
+  font-size: 20px;
+}
+
+/*
+  Contact Page
+*/
+.contact {
+  display: flex;
+  height: 80vh;
+  max-width: 1600px;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.contact__title {
+  display: none;
+  text-align: center;
+}
+
+.contact__img {
+  width: 50%;
+}
+
+.contact__info {
+  margin: 0 auto;
+  font-size: 35px;
+}
+
+.contact__icons {
+  display: flex;
+  padding: 16px;
+}
+
+.contact__link {
+  margin-left: 16px;
+  text-decoration: none;
+  color: black;
+}
+.contact__link:hover {
+  transform: scale(1.1);
+}
+
+/*
+  Gallery
+*/
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  margin-top: 54px;
+}
+
+.gallery__item {
+  margin: 12px;
+  width: 500px;
+  height: 400px;
+}
+
+.gallery__item:hover {
+  transform: scale(1.1);
+}
+
+.gallery:hover > .gallery__item:not(:hover) {
+  filter:blur(4px);
+}
+
+/*
+  Referal
+*/
+
+.referal {
+  background-color: #5e1e9b;
+  color: white;
+  text-align: center;
+  margin-top: 52px;
+  padding: 24px;
+}
+
+.referal__text {
+  margin: 16px 0;
+  font-size: 20px;
+}
+
+.social__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.socials {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+}
+
+.social__link {
+  text-decoration: none;
+  color: white;
+  font-size: 25px;
+  margin-left: 8px;
+}
+
+.social__link:hover {
+  transform: scale(1.1);
+}
+
+.social__email {
+  font-size: 25px;
+  margin-left: 8px;
+}
+
+/*
+  Footer
+*/
+
+.footer {
+  margin-top:32px;
+  background-color: grey;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 16px 0 16px;
+}
+
+.footer__subheader {
+  padding-top:8px;
+}
+
+.footer__links {
+  padding: 16px 8px 32px 8px;
+  margin: 0 24px;
+  display: flex;
+  align-items: center;
+  font-size: 25px;
+  width: 100%;
+}
+
+.footer__links--container {
+  display: flex;
+  margin: 0 16px;
+}
+
+.footer__link {
+  padding: 8px;
+}
+
+.line {
+  border: 1px solid #5e1e9b;
+  width: 100%;
+}
+
+/*
+  Comic Section
+*/
+
+.comic__section {
+  margin-top: 32px;
+  background-color: #5e1e9b;
+  color: white;
+}
+
+.comic__section--title {
+  padding: 32px;
+  text-align: center;
+}
+
+.comic-description {
+  margin-bottom: 16px;
+}
+
+.comic__section--prev {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding-bottom: 32px;
+}
+
+.comic__section--img {
+  max-width: 40%;
+  margin: 16px;
+}
+
+.comic__section--desc {
+  padding-right: 16px;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+}
+
+.comic__section--button {
+  align-self: flex-end;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  padding:8px 16px;
+  border: 1px solid white;
+  border-radius: 16px;
+  width: 30%;
+}
+
+.comic__section--button:hover {
+  transform: scale(1.1);
+}
+
+.comic__section--button:active {
+  background-color: white;
+  color:#5e1e9b;
+}
+
+/*
+  Comic Page
+*/
+.hidden_text {
+  display: none;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 30px;
+  height: 50vh;
+  margin-top: 350px;
+  max-width: 500px;
+}
+
+.comic__page {
+  padding-top: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+.book {
+  display: flex;
+}
+
+.arrow {
+  margin-top: 32px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.comicpage {
+  border:2px solid black;
+  width: 100%;
+  height:90vh;
+  border-radius: 16px;
+}
+
+.comicpage--left {
+  margin-left:16px;
+}
+
+.comicpage--right {
+  margin: 0 16px 0 1px;
+}
+
+.comic__arrow {
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.comic {
+  max-height:500px;
+}
+
+.arrows {
+  background: none;
+  border: none;
+}
+
+.arrows:hover {
+  animation: leftright .75s ease infinite;
+}
+
+@keyframes leftright {
+  0% {
+    transform: translateX(-5px);
+  }
+
+  50% {
+    transform: translateX(5px);
+  }
+
+  100% {
+    transform: translateX(-5px);
+  }
+}
+
+
+@media(max-width:1100px) { 
+  .landing {
+    margin-left: 175px;
+  }
+
+  .about__content {
+    flex-direction: column;
+  }
+
+  .about__desc {
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+
+  .contact__button {
+    margin: 0 auto;
+    width: 50%;
+  }
+
+  .contact__title {
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  .contact__icons {
+    justify-content: center;
+  }
+
+  .contact__img {
+    display: none;
+  }
+
+  .comci__section--sub {
+    font-size: 22px;
+  }
+
+  .comic__section--desc {
+    font-size: 16px;
+  }
+
+  .comic__section--button {
+    width: 50%;
+  }
+}
+
+@media(max-width: 706px) {
+  .nav__list{
+    display: none;
+  }
+
+  .nav__button{
+    display: block;
+  }
+
+  .landing {
+    margin-left: 75px;
+  }
+
+  .landing__title {
+    font-size: 30px;
+  }
+
+  .landing__subtitle {
+    font-size: 20px;
+  }
+
+  .about__opt {
+    display: none;
+  }
+
+  .about__text {
+    padding-left: 0;
+  }
+    
+  .projects {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .project {
+    width: 50%;
+  }
+
+  .contact__title {
+    font-size: 40px;
+  }
+
+  .contact__icons {
+    font-size: 30px;
+  }
+
+  .comic__section--prev {
+    flex-direction: column;
+    
+  }
+
+  .comic__section--desc {
+    text-align: center;
+  }
+
+  .comic__section--button {
+    align-self: center;
+  }
+
+  .comic__section--img {
+    max-width: 70%;
+  }
+
+  .comic__page {
+    display: none;
+  }
+
+  .hidden_text {
+    display: block;
+  }
+
+}
+
+@media(max-width: 450px) {
+  .footer__subheader {
+    font-size: 15px;
+    text-align: center;
+  }
+
+  .copyright {
+    font-size: 12px;
+    text-align: center;
+  }
+
+  .contact__title {
+    font-size: 30px;
+    
+  }
+
+  .contact__icons {
+    font-size: 25px;
+  }
+
+  .gallery__item:hover {
+    transform: none;
+  }
 }
